@@ -73,7 +73,7 @@ alias lpn='bc lpn'
 
 
 
-
+alias g='git'
 #Folders and files
 alias gitf='cd ~/.git'
 #alias gitg='getgit'
