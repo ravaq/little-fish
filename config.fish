@@ -71,7 +71,8 @@ alias lp='bc lp'
 alias lpp='bc lpp'
 alias lpn='bc lpn'
 
-
+alias copy='xclip -selection clipboard'
+alias paste='xclip -selection clipboard -o'
 
 alias g='git'
 #Folders and files
