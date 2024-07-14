@@ -119,3 +119,15 @@ alias wshr='windowshare'
 alias wshru='sudo umount  ~/Documents/windowshare'
 
 alias ulock='sudo rm /var/lib/pacman/db.lck'
+
+
+#Git
+alias ginit='git init'
+alias gstat='git status'
+alias glog='git log'
+alias gadd='git add'
+alias gcomm='git commit -m'
+alias gbranch='git branch'
+alias gswitch='git switch'
+alias grestore='git restore'
+alias gaddcomm='gadd . && gcomm'
