@@ -74,7 +74,7 @@ alias lpn='bc lpn'
 alias copy='xclip -selection clipboard'
 alias paste='xclip -selection clipboard -o'
 
-alias g='git'
+
 #Folders and files
 alias gitf='cd ~/.git'
 #alias gitg='getgit'
@@ -131,3 +131,7 @@ alias gbranch='git branch'
 alias gswitch='git switch'
 alias grestore='git restore'
 alias gaddcomm='gadd . && gcomm'
+alias gpush='git push origin'
+alias gpull='git pull origin'
+alias gseturl='git remote set-url origin'
+alias gmerge='git merge'
