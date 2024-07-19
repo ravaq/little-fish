@@ -1,4 +1,4 @@
-function web_query
+function web-query
   if test (count $argv) -lt 2
     echo 'please enter a valid option and query!'
     return 1

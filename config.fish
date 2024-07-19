@@ -11,6 +11,8 @@ set -g EDITOR micro
 alias sd='sudo '
 alias sudo='sudo '
 
+alias bash='bash -c'
+
 #Package manage
 alias pmu='sudo pacman -Syu'    # Update the system and upgrade all system packages.
 alias pin='sudo pacman -S'      # Install a specific package from repos added to the system
@@ -18,8 +20,8 @@ alias pmd='sudo pacman -U'      # Install specific package that has been downloa
 alias pir='pacman -Si'          # Display information about a given package located in the repositories
 alias pil='pacman -Qi'          # Display information about a given package in the local database
 alias pmss='pacman -Ss'         # Search for package or packages in the repositories
-alias prr='sudo pacman -R'     # Remove the specified package but retain its configuration and deps
-alias pr='sudo pacman -Rns'    # Remove package, its configuration and all unwanted dependencies
+alias pr='sudo pacman -Rns'     # Remove package, its configuration and all unwanted dependencies
+alias prp='sudo pacman -R'      # Remove the specified package but retain its configuration and deps
 alias pmc='sudo pacman -Scc'
 alias pq='pacman -Q'            # Query the package database
 alias pqq='pacman -Qq'          # Query the package database, with less information
@@ -32,22 +34,23 @@ alias pqroo='pacman -Qtdq | sudo pacman -R -'
 
 
 alias uu='yay'
-alias uy='yay -Syua'       # Synchronize with repositories and upgrade packages, including AUR packages.
-alias uui='yay -S'         # Install a specific package from repos added to the system.
-alias uli='yay -U'         # Install specific package that has been downloaded to the local system
-alias urr='yay -R'         # Remove package but retain configs and required dependencies
-alias ur='yay -Rns'        # Remove package or packages, its configuration and all unwanted dependencies
-alias yp='yay -Ps'         # Print system statistics.
-alias ylu='yay -Pu'        # print update list
-alias yc='yay -Yc'         # Clean unneeded dependencies.
-alias ycs='yay -Sc'        # Remove packages from cache.
-alias yip='yay -Si'        # Display information about a given package located in the repositories
-alias ypb='yay -G'         # Download PKGBUILD from ABS or AUR.
-alias yss='yay -Ss'        # Search for package or packages in the repositories
-alias yl='yay -Qe'         # List installed packages, even those installed from AUR (they're tagged as "local")
-alias yro='yay -Qtd'       # Remove orphans using yay
-alias ydw='yay -Wu'        # Unvote for AUR package (Requires setting AUR_USERNAME and AUR_PASSWORD environment variables)
-alias yup='yay -Wv'        # Vote for AUR package (Requires setting AUR_USERNAME and AUR_PASSWORD environment variables)
+alias uuu='yay-update-repo'  # Update repositories, and then search for packages if there is a query.
+alias uy='yay -Syua'         # Synchronize with repositories and upgrade packages, including AUR packages.
+alias uui='yay -S'           # Install a specific package from repos added to the system.
+alias uli='yay -U'           # Install specific package that has been downloaded to the local system
+alias uro='yay -R'           # Remove package but retain configs and required dependencies
+alias ur='yay -Rns'          # Remove package or packages, its configuration and all unwanted dependencies
+alias yp='yay -Ps'           # Print system statistics.
+alias ylu='yay -Pu'          # print update list
+alias yc='yay -Yc'           # Clean unneeded dependencies.
+alias ycs='yay -Sc'          # Remove packages from cache.
+alias yip='yay -Si'          # Display information about a given package located in the repositories
+alias ypb='yay -G'           # Download PKGBUILD from ABS or AUR.
+alias yss='yay -Ss'          # Search for package or packages in the repositories
+alias yl='yay -Qe'           # List installed packages, even those installed from AUR (they're tagged as "local")
+alias yro='yay -Qtd'         # Remove orphans using yay
+alias ydw='yay -Wu'          # Unvote for AUR package (Requires setting AUR_USERNAME and AUR_PASSWORD environment variables)
+alias yup='yay -Wv'          # Vote for AUR package (Requires setting AUR_USERNAME and AUR_PASSWORD environment variables)
 
 #List commands
 alias lc='compgen -c | sort -u'
@@ -59,17 +62,8 @@ alias lA='compgen -A function -abck | sort -u'
 
 alias mpi='makepkg -si'
 
-#Package list
+alias lp='list-packages'
 
-alias lpti='expac --timefmt="%Y-%m-%d %T"-H M "%011l\t%-11m\t%-25n\t%10d" $(comm -23 <(pacman -Qqen | sort) <({ pacman -Qqg xorg; expac -l "\n" "%E" base; } | sort -u)) | sort -n'
-alias lpd='expac --timefmt="%Y-%m-%d %T" -H M "%011l\t%-9m\t%-25n\t%10d" | sort -n'
-alias lpf='expac -H M "%-13m\t%-20n\t%10d" | sort -n'
-alias lpl='expac --timefmt="%Y-%m-%d %T" "%l\t%n" | sort | tail -n 20'
-alias lpes='expac -H M "%011m\t%-20n\t%10d" $(comm -23 (pacman -Qqen | sort | psub) (begin; pacman -Qqg xorg; expac -l '\n' '%E' base; end | sort -u | psub)) | sort -n'
-alias lped='bc lped'
-alias lp='bc lp'
-alias lpp='bc lpp'
-alias lpn='bc lpn'
 
 alias copy='xclip -selection clipboard'
 alias paste='xclip -selection clipboard -o'
@@ -99,13 +93,13 @@ alias ll='ls -lav --ignore=..'   # show long listing of all except ".."
 alias cls='clear'
 
 #web
-alias arcdb='web_query --arch'
-alias aurdb='web_query --aur'
-alias google='web_query --ggl'
-alias alts='web_query --alt'
-alias gthb='web_query --gthb'
-alias gourl='web_query --url'
-alias compr='web_query --vs'
+alias arcdb='web-query --arch'
+alias aurdb='web-query --aur'
+alias google='web-query --ggl'
+alias alts='web-query --alt'
+alias gthb='web-query --gthb'
+alias gourl='web-query --url'
+alias compr='web-query --vs'
 
 alias exiso='extract-xiso'
 
@@ -127,11 +121,18 @@ alias gstat='git status'
 alias glog='git log'
 alias gadd='git add'
 alias gcomm='git commit -m'
+alias gaddcomm='gadd . && gcomm'
 alias gbranch='git branch'
 alias gswitch='git switch'
+alias gmerge='git merge'
 alias grestore='git restore'
-alias gaddcomm='gadd . && gcomm'
+alias gtag='git tag'
 alias gpush='git push origin'
 alias gpull='git pull origin'
+alias gfetch='git fetch origin'
+alias gorigin='git remote add origin'
 alias gseturl='git remote set-url origin'
-alias gmerge='git merge'
+
+
+#github
+alias ghssh='github-ssh-generate'
