@@ -1,8 +1,4 @@
-#besme-Allah
-
-#if status is-interactive
-    # Commands to run in interactive sessions can go here
-#end
+#!/usr/bin/fish
 
 set -g EDITOR micro
 
@@ -12,6 +8,9 @@ alias sd='sudo '
 alias sudo='sudo '
 
 alias bash='bash -c'
+
+#Fish
+alias padd='fish_add_path'
 
 #Package manage
 alias pmu='sudo pacman -Syu'    # Update the system and upgrade all system packages.
@@ -114,6 +113,8 @@ alias wshru='sudo umount  ~/Documents/windowshare'
 
 alias ulock='sudo rm /var/lib/pacman/db.lck'
 
+alias sudit='sudo micro'
+
 
 #Git
 alias ginit='git init'
@@ -136,3 +137,7 @@ alias gseturl='git remote set-url origin'
 
 #github
 alias ghssh='github-ssh-generate'
+
+#if status is-interactive
+    # Commands to run in interactive sessions can go here
+#end
